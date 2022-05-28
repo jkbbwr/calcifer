@@ -1,0 +1,13 @@
+# fly.toml file generated for calcifer on 2022-05-22T21:52:30+01:00
+
+app = "calcifer"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
