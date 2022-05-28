@@ -5,6 +5,6 @@ config :logger,
   metadata: [:shard, :guild, :channel]
 
 config :calcifer,
-  guild: 773056915847905281
+  guild: 773_056_915_847_905_281
 
 import_config "#{config_env()}.exs"

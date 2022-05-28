@@ -66,11 +66,13 @@ defmodule Calcifer.Commands.Colour do
     ])
 
     Logger.info("Adding colour role #{role.name} to #{interaction.user.username}")
-    {:ok} = Api.add_guild_member_role(
-      interaction.guild_id,
-      interaction.member.user.id,
-      role.id
-    )
+
+    {:ok} =
+      Api.add_guild_member_role(
+        interaction.guild_id,
+        interaction.member.user.id,
+        role.id
+      )
 
     :ok
   end
@@ -85,7 +87,10 @@ defmodule Calcifer.Commands.Colour do
       end)
 
     if role != nil do
-      Logger.info("Removing colour role #{Access.get(guild.roles, role).name} from #{interaction.user.username}")
+      Logger.info(
+        "Removing colour role #{Access.get(guild.roles, role).name} from #{interaction.user.username}"
+      )
+
       Api.remove_guild_member_role(interaction.guild_id, interaction.member.user.id, role)
     end
 

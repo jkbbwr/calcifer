@@ -8,7 +8,6 @@ defmodule Calcifer.Consumer do
     Consumer.start_link(__MODULE__)
   end
 
-
   def handle_event({:READY, _ready, _ws_state}) do
     Calcifer.Commands.register_commands()
     Logger.info("Calcifer booted and ready to burn some bacon!")
