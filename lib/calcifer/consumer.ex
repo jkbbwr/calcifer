@@ -21,6 +21,26 @@ defmodule Calcifer.Consumer do
     Calcifer.Commands.handle_interaction(interaction)
   end
 
+  def handle_event({:VOICE_STATE_UPDATE, voice_state, _ws_state}) do
+    if voice_state.channel_id == nil do
+      Calcifer.VoiceCache.disconnected(voice_state.guild_id, voice_state.member.user.id)
+    else
+      Calcifer.VoiceCache.activity(
+        voice_state.guild_id,
+        voice_state.member.user.id,
+        voice_state.channel_id
+      )
+    end
+  end
+
+  def handle_event({:VOICE_READY, voice_ready, _ws_state}) do
+    Calcifer.Jukebox.ready(voice_ready.guild_id)
+  end
+
+  def handle_event({:VOICE_SPEAKING_UPDATE, voice_speaking, _ws_state}) do
+    Calcifer.Jukebox.update(voice_speaking.speaking)
+  end
+
   def handle_event(_event) do
     :noop
   end

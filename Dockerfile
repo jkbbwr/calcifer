@@ -36,6 +36,8 @@ FROM elixir:alpine
 WORKDIR "/app"
 RUN chown nobody /app
 
+RUN apk update && apk add youtube-dl
+
 # Only copy the final release from the build stage
 COPY --from=builder --chown=nobody:root /app/_build/prod/rel ./
 

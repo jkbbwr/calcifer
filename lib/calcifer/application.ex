@@ -8,10 +8,12 @@ defmodule Calcifer.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      {Calcifer.Consumer, []}
+      {Calcifer.Consumer, []},
+      {Calcifer.VoiceCache, []},
+      {Calcifer.Jukebox, []}
     ]
 
-    opts = [strategy: :one_for_one, name: Calcifer.Supervisor]
+    opts = [strategy: :one_for_one, name: Calcifer.Supervisor, max_restarts: 5]
     Supervisor.start_link(children, opts)
   end
 end

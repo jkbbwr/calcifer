@@ -4,6 +4,7 @@ defmodule Calcifer.Respond do
   use Bitwise
   alias Nostrum.Api
 
+  @spec ephemeral(Nostrum.Struct.Interaction.t(), String.t()) :: {:ok}
   def ephemeral(interaction, message) do
     payload = %{
       type: 4,

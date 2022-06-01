@@ -3,7 +3,8 @@ defmodule Calcifer.Commands do
   require Logger
 
   @commands %{
-    "colour" => Calcifer.Commands.Colour
+    "colour" => Calcifer.Commands.Colour,
+    "audio" => Calcifer.Commands.Audio
   }
 
   @command_names for {name, _} <- @commands, do: name
